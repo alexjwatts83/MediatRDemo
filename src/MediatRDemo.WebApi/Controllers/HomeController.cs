@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatRDemo.Application.Services;
+﻿using MediatRDemo.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediatRDemo.WebApi.Controllers
@@ -17,10 +13,17 @@ namespace MediatRDemo.WebApi.Controllers
         }
 
         [HttpGet("")]
-        public ActionResult<string> NotifyAll()
+        public IActionResult NotifyAll()
         {
             _notifierMediatorService.Notify("This is a test notification");
-            return "Completed";
+            return Ok("Notify All");
+        }
+
+        [HttpGet("/{text}")]
+        public IActionResult NotifyWithCustomText(string text)
+        {
+            _notifierMediatorService.Notify(text);
+            return Ok("Notify With Custom Text");
         }
     }
 }
