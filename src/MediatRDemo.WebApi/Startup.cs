@@ -27,7 +27,11 @@ namespace MediatRDemo.WebApi
 			services.AddApplicationServices(_configuration);
 			services.AddPersistenceServices(_configuration);
 			services.AddTransient<INotifierMediatorService, NotifierMediatorService>();
-        }
+			services.AddRouting(options =>
+			{
+				options.LowercaseUrls = true;
+			});
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

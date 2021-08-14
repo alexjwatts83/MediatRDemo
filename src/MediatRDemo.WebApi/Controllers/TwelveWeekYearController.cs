@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MediatRDemo.WebApi.Controllers
 {
-	[Route("api/twelve-week-year")]
+	[Route("api/[controller]")]
 	[ApiController]
 	public class TwelveWeekYearController : ControllerBase
 	{
