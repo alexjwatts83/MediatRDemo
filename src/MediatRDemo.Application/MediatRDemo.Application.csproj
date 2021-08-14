@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MediatRDemo.Domain\MediatRDemo.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

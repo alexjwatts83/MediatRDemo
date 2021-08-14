@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using MediatRDemo.Application.Interfaces;
 using MediatRDemo.Application.Notifcations;
-using MediatRDemo.Application.Services;
 
 namespace MediatRDemo.WebApi.Services
 {

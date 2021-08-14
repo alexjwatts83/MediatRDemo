@@ -12,8 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MediatRDemo.Application;
-using MediatRDemo.Application.Services;
 using MediatRDemo.WebApi.Services;
+using MediatRDemo.Application.Interfaces;
 
 namespace MediatRDemo.WebApi
 {

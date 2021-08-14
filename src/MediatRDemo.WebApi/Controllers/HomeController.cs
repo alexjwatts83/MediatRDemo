@@ -1,4 +1,4 @@
-﻿using MediatRDemo.Application.Services;
+﻿using MediatRDemo.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediatRDemo.WebApi.Controllers
