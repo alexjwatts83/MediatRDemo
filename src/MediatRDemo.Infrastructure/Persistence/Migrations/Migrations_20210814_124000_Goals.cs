@@ -1,13 +1,14 @@
 ﻿using FluentMigrator;
-using MediatRDemo.Application.Extensions;
 
 namespace MediatRDemo.Infrastructure.Persistence.Migrations
 {
-    [Migration(20210814_124000)]
-	public class Migrations_20210814_124000_Goals : Migration, IProductionMigration
+	[Migration(20210814_124000)]
+	public class Migrations_20210814_124000_Goals : BaseCreateTableMigration
     {
-        private const string _tableName = "Goals";
-        private void CreateTable()
+        public Migrations_20210814_124000_Goals() : base("Goals")
+        {
+        }
+        public override void CreateTable()
         {
             Create.Table(_tableName)
                 .WithColumn("Id").AsGuid().PrimaryKey()
@@ -15,7 +16,7 @@ namespace MediatRDemo.Infrastructure.Persistence.Migrations
                 .WithColumn("Description").AsString(4000).Nullable();
         }
 
-        private void SeedTable()
+        public override void SeedTable()
         {
             Insert.IntoTable(_tableName)
                 .Row(new
@@ -36,17 +37,6 @@ namespace MediatRDemo.Infrastructure.Persistence.Migrations
                     Name = "Goal 3",
                     Description = "Goal 3 Decription"
                 });
-        }
-
-        public override void Down()
-        {
-            Delete.Table(_tableName);
-        }
-
-        public override void Up()
-        {
-            CreateTable();
-            SeedTable();
         }
     }
 }

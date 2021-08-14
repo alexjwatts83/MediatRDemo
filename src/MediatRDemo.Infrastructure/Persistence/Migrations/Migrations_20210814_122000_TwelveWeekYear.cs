@@ -4,10 +4,13 @@ using MediatRDemo.Application.Extensions;
 namespace MediatRDemo.Infrastructure.Persistence.Migrations
 {
     [Migration(20210814_122000)]
-    public class Migrations_20210814_122000_TwelveWeekYear : Migration, IProductionMigration
+    public class Migrations_20210814_122000_TwelveWeekYear : BaseCreateTableMigration
     {
-        private const string _tableName = "TwelveWeekYear";
-        private void CreateTable()
+		public Migrations_20210814_122000_TwelveWeekYear() : base("TwelveWeekYear")
+        {
+		}
+
+		public override void CreateTable()
         {
             Create.Table(_tableName)
                 .WithColumn("Id").AsInt32().PrimaryKey().Identity()
@@ -17,7 +20,7 @@ namespace MediatRDemo.Infrastructure.Persistence.Migrations
                 .WithColumn("End").AsDateTime().Nullable();
         }
 
-        private void SeedTable()
+        public override void SeedTable()
         {
             var startDate = new System.DateTime(2021, 8, 16);
             var endDate = startDate.AddWeeks(12);
@@ -29,17 +32,6 @@ namespace MediatRDemo.Infrastructure.Persistence.Migrations
                     Start = startDate,
                     End = endDate
                 });
-        }
-
-        public override void Down()
-        {
-            Delete.Table(_tableName);
-        }
-
-        public override void Up()
-        {
-            CreateTable();
-            SeedTable();
         }
     }
 }
