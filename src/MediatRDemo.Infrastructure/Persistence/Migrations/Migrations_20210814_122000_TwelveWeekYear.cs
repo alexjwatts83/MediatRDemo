@@ -27,11 +27,18 @@ namespace MediatRDemo.Infrastructure.Persistence.Migrations
             Insert.IntoTable(_tableName)
                 .Row(new
                 {
-                    Name = "NEW",
-                    Description = "Newcastle",
+                    Name = "August to November",
+                    Description = "Do stuff",
                     Start = startDate,
                     End = endDate
-                });
+                })
+				.Row(new
+				{
+					Name = "November to January",
+					Description = "Do more stuff",
+					Start = endDate,
+					End = endDate.AddWeeks(12)
+				});
         }
     }
 }

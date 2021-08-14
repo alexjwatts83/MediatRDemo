@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MediatRDemo.Application.GoalTask.Queries;
+using MediatRDemo.Application.TwelveWeekYears.Queries;
 using MediatRDemo.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -19,9 +19,18 @@ namespace MediatRDemo.WebApi.Controllers
 
 		// GET: api/twelve-week-year
 		[HttpGet]
-		public async Task<ActionResult<IReadOnlyList<TwelveWeekYear>>> Get()
+		public async Task<ActionResult<IReadOnlyList<TwelveWeekYear>>> GetAllAsync()
 		{
-			var list = await _mediator.Send(new GetTwelveWeekYearQuery());
+			var list = await _mediator.Send(new GetAllTwelveWeekYearQuery());
+			return Ok(list);
+		}
+
+		// GET: api/twelve-week-year/{id}
+		[HttpGet("{id}")]
+		public async Task<ActionResult<TwelveWeekYear>> GetByIdAsync(int id)
+		{
+			var request = new GetByIdTwelveWeekYearQuery() { Id = id };
+			var list = await _mediator.Send(request);
 			return Ok(list);
 		}
 	}
