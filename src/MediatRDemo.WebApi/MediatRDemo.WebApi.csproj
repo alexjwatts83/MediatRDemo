@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MediatRDemo.Application\MediatRDemo.Application.csproj" />
+    <ProjectReference Include="..\MediatRDemo.Infrastructure\MediatRDemo.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

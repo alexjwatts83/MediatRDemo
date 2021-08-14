@@ -4,7 +4,7 @@ using MediatRDemo.Infrastructure.Persistence.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MediatRDemo.Infrastructure
+namespace MediatRDemo.Infrastructure.Persistence.DependencyInjection
 {
     public static class DependencyInjection
     {
