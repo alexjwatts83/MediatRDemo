@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Dapper;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Initialization;
+using MediatRDemo.Infrastructure.Persistence.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MediatRDemo.Infrastructure.Persistence.DependencyInjection
@@ -33,14 +34,14 @@ namespace MediatRDemo.Infrastructure.Persistence.DependencyInjection
             return new ServiceCollection()
                 // Add common FluentMigrator services
                 .AddFluentMigratorCore()
-                .Configure<AssemblySourceOptions>(x => x.AssemblyNames = new[] { typeof(AddLocations).Assembly.GetName().Name })
+                .Configure<AssemblySourceOptions>(x => x.AssemblyNames = new[] { typeof(Migrations_20210814_122000_TwelveWeekYear).Assembly.GetName().Name })
                 .ConfigureRunner(rb => rb
                     // Add SQL Server support to FluentMigrator
                     .AddSqlServer()
                     // Set the connection string
                     .WithGlobalConnectionString(dbConnectionString)
                     // Define the assembly containing the migrations
-                    .ScanIn(typeof(AddLocations).Assembly)
+                    .ScanIn(typeof(Migrations_20210814_122000_TwelveWeekYear).Assembly)
                         .For.Migrations()
                         .For.EmbeddedResources())
                 // Enable logging to console in the FluentMigrator way
