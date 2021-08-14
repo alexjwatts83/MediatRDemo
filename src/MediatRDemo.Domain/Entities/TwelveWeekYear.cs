@@ -2,9 +2,8 @@
 
 namespace MediatRDemo.Domain.Entities
 {
-    public class TwelveWeekYear
+    public class TwelveWeekYear : BaseEntity<int>
     {
-        public int Id { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
     }
