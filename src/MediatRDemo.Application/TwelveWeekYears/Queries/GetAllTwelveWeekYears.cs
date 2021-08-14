@@ -21,6 +21,7 @@ namespace MediatRDemo.Application.TwelveWeekYears.Queries
 		{
 		}
 
-		public Task<IReadOnlyList<TwelveWeekYear>> Handle(GetAllTwelveWeekYearQuery request, CancellationToken cancellationToken) => base.Handle(request, cancellationToken);
+		public Task<IReadOnlyList<TwelveWeekYear>> Handle(GetAllTwelveWeekYearQuery request, CancellationToken cancellationToken)
+			=> base.Handle(request, cancellationToken);
 	}
 }

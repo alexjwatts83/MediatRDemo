@@ -27,12 +27,18 @@ namespace MediatRDemo.WebApi.Controllers
 		[HttpGet]
 		public async Task<ActionResult<IReadOnlyList<TEntity>>> GetAllAsync()
 		{
-			// TO Create class
-			var repositoryType = typeof(GetAllBaseQuery<,>);
-			var instance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity), typeof(TKey)));
-
-			//var instance = Activator.CreateInstance(typeof(TGetAllQuery));
+			var instance = Activator.CreateInstance(typeof(TGetAllQuery));
 			var list = await _mediator.Send(instance);
+			return Ok(list);
+		}
+
+		// GET: api/[controller]/{id}
+		[HttpGet("{id}")]
+		public async Task<ActionResult<TwelveWeekYear>> GetByIdAsync(TKey id)
+		{
+			var request = Activator.CreateInstance(typeof(TGetByIdQuery));
+			((GetByIdBaseQuery<TEntity, TKey>)request).Id = id;
+			var list = await _mediator.Send(request);
 			return Ok(list);
 		}
 	}

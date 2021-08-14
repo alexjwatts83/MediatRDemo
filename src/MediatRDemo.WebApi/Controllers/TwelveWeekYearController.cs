@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MediatRDemo.Application.Goals.Queries;
 using MediatRDemo.Application.TwelveWeekYears.Queries;
 using MediatRDemo.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -35,5 +36,10 @@ namespace MediatRDemo.WebApi.Controllers
 			return Ok(list);
 		}
 	}
-	public class GoalController : BaseApiController<Goal, Guid, >
+	public class GoalController : BaseApiController<Goal, Guid, GetAllGoalsQuery, GetByIdGoalQuery>
+	{
+		public GoalController(IMediator mediator) : base(mediator)
+		{
+		}
+	}
 }
