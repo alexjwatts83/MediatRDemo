@@ -15,4 +15,8 @@
     <ProjectReference Include="..\MediatRDemo.Domain\MediatRDemo.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="GoalTask\Commands\" />
+  </ItemGroup>
+
 </Project>

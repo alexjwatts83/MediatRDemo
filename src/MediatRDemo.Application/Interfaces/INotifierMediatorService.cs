@@ -1,6 +1,6 @@
 ﻿namespace MediatRDemo.Application.Interfaces
 {
-    public interface INotifierMediatorService
+	public interface INotifierMediatorService
     {
         void Notify(string notifyText);
     }

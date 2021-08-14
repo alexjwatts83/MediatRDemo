@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using MediatRDemo.Domain.Entities;
-
-namespace MediatRDemo.Application.Interfaces
+﻿namespace MediatRDemo.Application.Interfaces
 {
-    public interface IGenericCrudRepositoryScripts
+	public interface IGenericCrudRepositoryScripts
     {
         public string GetByIdAsyncSql { get; }
         public string GetAllAsyncSql { get; }
