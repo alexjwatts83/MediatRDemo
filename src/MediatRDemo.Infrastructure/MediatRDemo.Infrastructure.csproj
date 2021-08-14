@@ -7,6 +7,15 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.90" />
     <PackageReference Include="FluentMigrator.Runner" Version="3.2.17" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Persistence\Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MediatRDemo.Application\MediatRDemo.Application.csproj" />
   </ItemGroup>
 
 </Project>
