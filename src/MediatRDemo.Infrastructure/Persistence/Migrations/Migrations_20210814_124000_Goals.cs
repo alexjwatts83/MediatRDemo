@@ -19,25 +19,17 @@ namespace MediatRDemo.Infrastructure.Persistence.Migrations
 
         public override void SeedTable()
         {
-            Insert.IntoTable(_tableName)
-                .Row(new
-                {
-					Id = System.Guid.NewGuid(),
-                    Name = "Goal 1",
-                    Description = "Goal 1 Decription"
-                })
-                .Row(new
-                {
-                    Id = System.Guid.NewGuid(),
-                    Name = "Goal 2",
-                    Description = "Goal 2 Decription"
-                })
-                .Row(new
-                {
-                    Id = System.Guid.NewGuid(),
-                    Name = "Goal 3",
-                    Description = "Goal 3 Decription"
-                });
+            for (int i = 1; i <= 3; i++)
+            {
+                Insert.IntoTable(_tableName)
+                    .Row(new
+                    {
+                        Id = System.Guid.NewGuid(),
+                        Name = $"Goal {i}",
+                        Description = $"Goal Description {i}"
+                    });
+
+            }
         }
     }
 }
