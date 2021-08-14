@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using MediatRDemo.Application.Interfaces;
 using MediatRDemo.Domain.Entities;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
