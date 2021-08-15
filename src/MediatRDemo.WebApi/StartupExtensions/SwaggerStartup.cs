@@ -4,7 +4,7 @@ using Microsoft.OpenApi.Models;
 
 namespace MediatRDemo.WebApi.StartupExtensions
 {
-	public static class SwaggerServiceExtensions
+	public static class SwaggerStartup
 	{
 		public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
 		{

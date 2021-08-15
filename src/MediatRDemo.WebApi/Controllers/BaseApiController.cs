@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
-using MediatRDemo.Application.Base;
+using MediatRDemo.Application.Base.Queries;
 using MediatRDemo.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +29,10 @@ namespace MediatRDemo.WebApi.Controllers
 		{
 			var instance = Activator.CreateInstance(typeof(TGetAllQuery));
 			var list = await _mediator.Send(instance);
+			if(list == null)
+			{
+				return NotFound($"Could not get list of '{typeof(TEntity).Name}'");
+			}
 			return Ok(list);
 		}
 
@@ -38,8 +42,12 @@ namespace MediatRDemo.WebApi.Controllers
 		{
 			var request = Activator.CreateInstance(typeof(TGetByIdQuery));
 			((GetByIdBaseQuery<TEntity, TKey>)request).Id = id;
-			var list = await _mediator.Send(request);
-			return Ok(list);
+			var entity = await _mediator.Send(request);
+			if (entity == null)
+			{
+				return NotFound($"Could not find '{typeof(TEntity).Name}', with id of '{id}'");
+			}
+			return Ok(entity);
 		}
 	}
 }

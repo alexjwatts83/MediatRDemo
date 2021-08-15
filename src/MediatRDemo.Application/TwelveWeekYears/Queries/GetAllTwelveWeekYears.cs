@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MediatRDemo.Application.Base;
+using MediatRDemo.Application.Base.Queries;
 using MediatRDemo.Application.Interfaces;
 using MediatRDemo.Domain.Entities;
 using System.Collections.Generic;

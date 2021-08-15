@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MediatRDemo.Application;
-using MediatRDemo.WebApi.Services;
-using MediatRDemo.Application.Interfaces;
 using MediatRDemo.WebApi.StartupExtensions;
 using MediatRDemo.Infrastructure.Persistence.DependencyInjection;
 
@@ -26,11 +24,9 @@ namespace MediatRDemo.WebApi
 			services.AddSwaggerDocumentation();
 			services.AddApplicationServices(_configuration);
 			services.AddPersistenceServices(_configuration);
-			services.AddTransient<INotifierMediatorService, NotifierMediatorService>();
-			services.AddRouting(options =>
-			{
-				options.LowercaseUrls = true;
-			});
+			services.AddWebApiServices(_configuration);
+			services.AddCustomRouting();
+			//services.AddCustomOptimisation();
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,8 +38,9 @@ namespace MediatRDemo.WebApi
             }
 			app.UseSwaggerDocumentation();
 			app.UseHttpsRedirection();
-            app.UseRouting();
-            app.UseAuthorization();
+			app.UseCustomRouting();
+			//app.UseCustomOptimisation();
+			app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
