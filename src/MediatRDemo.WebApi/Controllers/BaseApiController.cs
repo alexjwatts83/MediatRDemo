@@ -11,13 +11,14 @@ namespace MediatRDemo.WebApi.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class BaseApiController<TEntity, TEntityDto, TKey, TGetAllQuery, TGetByIdQuery, TCreateCommand, TUpdateCommand>
+	public class BaseApiController<TEntity, TEntityDto, TKey, TGetAllQuery, TGetByIdQuery, TCreateCommand, TUpdateCommand, TDeleteCommand>
 		: ControllerBase
 			where TEntity : BaseEntity<TKey>
 			where TGetAllQuery : GetAllBaseQuery<TEntity, TKey>
 			where TGetByIdQuery : GetByIdBaseQuery<TEntity, TKey>
 			where TCreateCommand : CreateBaseCommand<TEntityDto, TKey>
 			where TUpdateCommand : UpdateBaseCommand<TEntityDto, TKey>
+			where TDeleteCommand : DeleteBaseCommand<TKey>
 	{
 		private readonly IMediator _mediator;
 
@@ -59,14 +60,26 @@ namespace MediatRDemo.WebApi.Controllers
 			return await _mediator.Send(command);
 		}
 
-		// PUT: api/TodoItems/5
+		// PUT: api/[controller]/{id}
 		[HttpPut("{id}")]
-		public async Task<IActionResult> PutTodoItem(TKey id, TUpdateCommand command)
+		public async Task<IActionResult> UpdateAsync(TKey id, TUpdateCommand command)
 		{
 			if (!id.Equals(command.Id))
 			{
 				return BadRequest();
 			}
+
+			await _mediator.Send(command);
+
+			return NoContent();
+		}
+
+		// DELETE: api/[controller]/{id}
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> DeleteAsync(TKey id)
+		{
+			var command = Activator.CreateInstance(typeof(TDeleteCommand));
+			((DeleteBaseCommand<TKey>)command).Id = id;
 
 			await _mediator.Send(command);
 
