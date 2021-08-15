@@ -37,7 +37,7 @@ namespace MediatRDemo.Application.Base.Commands
 			{
 				return default;
 			}
-			return entity.Id;
+			return result.Id;
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace MediatRDemo.Infrastructure.Persistence.RepositoryScripts
 
 		public string GetAllAsyncSql => $"SELECT * FROM {_tableName}";
 
-		public string AddAsyncSql => $"INSERT INTO {_tableName} (Id,Name,Description) VALUES (@Id,@Name,@Description);SELECT * FROM {_tableName} WHERE Id = @Id;";
+		public string AddAsyncSql => $"DECLARE @newid UNIQUEIDENTIFIER = NEWID();INSERT INTO {_tableName} (Id,Name,Description) VALUES (@newid,@Name,@Description);SELECT * FROM {_tableName} WHERE Id = @newid;";
 
 		public string UpdateAsyncSql => $"UPDATE {_tableName} SET Name = @Name, Description = @Description WHERE Id = @Id";
 
