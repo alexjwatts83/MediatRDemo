@@ -4,10 +4,10 @@ using MediatRDemo.Domain.Entities;
 
 namespace MediatRDemo.WebApi.Controllers
 {
-	public class TwelveWeekYearController : BaseApiController<TwelveWeekYear, int, GetAllTwelveWeekYearQuery, GetByIdTwelveWeekYearQuery>
-	{
-		public TwelveWeekYearController(IMediator mediator) : base(mediator)
-		{
-		}
-	}
+	//public class TwelveWeekYearController : BaseApiController<TwelveWeekYear, int, GetAllTwelveWeekYearQuery, GetByIdTwelveWeekYearQuery>
+	//{
+	//	public TwelveWeekYearController(IMediator mediator) : base(mediator)
+	//	{
+	//	}
+	//}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
+using MediatRDemo.Application.Base.Commands;
 using MediatRDemo.Application.Base.Queries;
 using MediatRDemo.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,12 @@ namespace MediatRDemo.WebApi.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class BaseApiController<TEntity, TKey, TGetAllQuery, TGetByIdQuery>
+	public class BaseApiController<TEntity, TEntityDto, TKey, TGetAllQuery, TGetByIdQuery, TCreateCommand>
 		: ControllerBase
 			where TEntity : BaseEntity<TKey>
-		where TGetAllQuery : GetAllBaseQuery<TEntity, TKey>
-		where TGetByIdQuery : GetByIdBaseQuery<TEntity, TKey>
+			where TGetAllQuery : GetAllBaseQuery<TEntity, TKey>
+			where TGetByIdQuery : GetByIdBaseQuery<TEntity, TKey>
+			where TCreateCommand : CreateBaseCommand<TEntityDto, TKey>
 	{
 		private readonly IMediator _mediator;
 
@@ -48,6 +50,12 @@ namespace MediatRDemo.WebApi.Controllers
 				return NotFound($"Could not find '{typeof(TEntity).Name}', with id of '{id}'");
 			}
 			return Ok(entity);
+		}
+
+		[HttpPost]
+		public async Task<ActionResult<TKey>> CreateAsync(TCreateCommand command)
+		{
+			return await _mediator.Send(command);
 		}
 	}
 }

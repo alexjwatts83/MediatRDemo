@@ -7,26 +7,27 @@ using System.Threading.Tasks;
 
 namespace MediatRDemo.Application.Base.Commands
 {
-	public class BaseCreateCommand<TEntityDto, TKey> : IRequest<TKey>
+	public class CreateBaseCommand<TEntityDto, TKey> : IRequest<TKey>
 	{
 		public TEntityDto Entity { get; set; }
 	}
 
-	public class BaseCreateCommandHandler<TEntityDto, TEntity, TKey>
+	public class CreateBaseCommandHandler<TEntityDto, TEntity, TKey>
 		where TEntity : BaseEntity<TKey>
 	{
 		private readonly IUnitOfWork unitOfWork;
 		private readonly IGenericCrudRepositoryScripts scripts;
 		private readonly IMapper _mapper;
 
-		public BaseCreateCommandHandler(IUnitOfWork unitOfWork, IGenericCrudRepositoryScripts scripts, IMapper mapper)
+		public CreateBaseCommandHandler(IUnitOfWork unitOfWork, IGenericCrudRepositoryScripts scripts, IMapper mapper)
 		{
 			this.unitOfWork = unitOfWork;
 			this.scripts = scripts;
+			_mapper = mapper;
 		}
 
 		public async Task<TKey> Handle(
-			BaseCreateCommand<TEntityDto, TKey> request,
+			CreateBaseCommand<TEntityDto, TKey> request,
 			CancellationToken cancellationToken)
 		{
 			var repo = unitOfWork.Repository<TEntity, TKey>(scripts);
