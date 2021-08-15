@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using MediatRDemo.Application.Common.Interfaces;
 using MediatRDemo.Application.Interfaces;
 using MediatRDemo.Domain.Entities;
 using MediatRDemo.Infrastructure.Persistence.Configurations;
@@ -7,7 +8,7 @@ using Microsoft.Extensions.Options;
 
 namespace MediatRDemo.Infrastructure.Persistence.Repositories
 {
-    public class UnitOfWork : IUnitOfWork
+	public class UnitOfWork : IUnitOfWork
     {
         private readonly IOptions<ConnectionStringSettings> _connectionStrings;
         private Hashtable _repositories;

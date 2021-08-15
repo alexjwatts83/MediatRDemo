@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MediatRDemo.Application.Common.Interfaces;
 using MediatRDemo.Application.Interfaces;
 using MediatRDemo.Domain.Entities;
 using System.Threading;

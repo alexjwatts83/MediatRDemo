@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MediatRDemo.Application.Common.Exceptions;
+using MediatRDemo.Application.Common.Interfaces;
 using MediatRDemo.Application.Common.Mappings;
 using MediatRDemo.Application.Interfaces;
 using MediatRDemo.Domain.Entities;

@@ -3,14 +3,14 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using MediatRDemo.Application.Interfaces;
+using MediatRDemo.Application.Common.Interfaces;
 using MediatRDemo.Domain.Entities;
 using MediatRDemo.Infrastructure.Persistence.Configurations;
 using Microsoft.Extensions.Options;
 
 namespace MediatRDemo.Infrastructure.Persistence.Repositories
 {
-    public class GenericCrudRepository<TEntity, TKey> : IGenericCrudRepository<TEntity, TKey>
+	public class GenericCrudRepository<TEntity, TKey> : IGenericCrudRepository<TEntity, TKey>
             where TEntity : BaseEntity<TKey>
     {
         private readonly string _connectionString;

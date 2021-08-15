@@ -1,4 +1,5 @@
-﻿using MediatRDemo.Application.Interfaces;
+﻿using MediatRDemo.Application.Common.Interfaces;
+using MediatRDemo.Application.Interfaces;
 using MediatRDemo.Infrastructure.Persistence.Configurations;
 using MediatRDemo.Infrastructure.Persistence.Repositories;
 using MediatRDemo.Infrastructure.Persistence.RepositoryScripts;
