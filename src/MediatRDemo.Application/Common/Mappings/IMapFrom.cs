@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace MediatRDemo.Application.Mappings
+namespace MediatRDemo.Application.Common.Mappings
 {
 	public interface IMapFrom<T>
 	{

@@ -1,8 +1,8 @@
-﻿using MediatRDemo.Application.Mappings;
-using System;
+﻿using System;
 using MediatRDemo.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using MediatRDemo.Application.Common.Mappings;
 
 namespace MediatRDemo.Application.Goals.Commands
 {

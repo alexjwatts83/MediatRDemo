@@ -1,5 +1,4 @@
 ﻿using FluentMigrator;
-using MediatRDemo.Application.Extensions;
 
 namespace MediatRDemo.Infrastructure.Persistence.Migrations
 {

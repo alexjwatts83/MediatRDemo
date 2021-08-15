@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace MediatRDemo.Application.Mappings
+namespace MediatRDemo.Application.Common.Mappings
 {
 	public class MappingProfile : Profile
 	{

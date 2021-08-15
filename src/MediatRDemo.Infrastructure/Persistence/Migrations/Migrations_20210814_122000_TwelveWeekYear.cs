@@ -1,9 +1,9 @@
 ﻿using FluentMigrator;
-using MediatRDemo.Application.Extensions;
+using MediatRDemo.Application.Common.Extensions;
 
 namespace MediatRDemo.Infrastructure.Persistence.Migrations
 {
-    [Migration(20210814_122000)]
+	[Migration(20210814_122000)]
     public class Migrations_20210814_122000_TwelveWeekYear : BaseCreateTableMigration
     {
 		public Migrations_20210814_122000_TwelveWeekYear() : base("TwelveWeekYear")

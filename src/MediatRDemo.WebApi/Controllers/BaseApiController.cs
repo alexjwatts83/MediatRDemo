@@ -11,12 +11,13 @@ namespace MediatRDemo.WebApi.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class BaseApiController<TEntity, TEntityDto, TKey, TGetAllQuery, TGetByIdQuery, TCreateCommand>
+	public class BaseApiController<TEntity, TEntityDto, TKey, TGetAllQuery, TGetByIdQuery, TCreateCommand, TUpdateCommand>
 		: ControllerBase
 			where TEntity : BaseEntity<TKey>
 			where TGetAllQuery : GetAllBaseQuery<TEntity, TKey>
 			where TGetByIdQuery : GetByIdBaseQuery<TEntity, TKey>
 			where TCreateCommand : CreateBaseCommand<TEntityDto, TKey>
+			where TUpdateCommand : UpdateBaseCommand<TEntityDto, TKey>
 	{
 		private readonly IMediator _mediator;
 
@@ -56,6 +57,20 @@ namespace MediatRDemo.WebApi.Controllers
 		public async Task<ActionResult<TKey>> CreateAsync(TCreateCommand command)
 		{
 			return await _mediator.Send(command);
+		}
+
+		// PUT: api/TodoItems/5
+		[HttpPut("{id}")]
+		public async Task<IActionResult> PutTodoItem(TKey id, TUpdateCommand command)
+		{
+			if (!id.Equals(command.Id))
+			{
+				return BadRequest();
+			}
+
+			await _mediator.Send(command);
+
+			return NoContent();
 		}
 	}
 }

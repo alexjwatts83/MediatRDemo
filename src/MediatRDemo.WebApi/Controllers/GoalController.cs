@@ -6,7 +6,7 @@ using System;
 
 namespace MediatRDemo.WebApi.Controllers
 {
-	public class GoalController : BaseApiController<Goal, GoalDto, Guid, GetAllGoalsQuery, GetByIdGoalQuery, CreateGoalCommand>
+	public class GoalController : BaseApiController<Goal, GoalDto, Guid, GetAllGoalsQuery, GetByIdGoalQuery, CreateGoalCommand, UpdateGoalCommand>
 	{
 		public GoalController(IMediator mediator) : base(mediator)
 		{

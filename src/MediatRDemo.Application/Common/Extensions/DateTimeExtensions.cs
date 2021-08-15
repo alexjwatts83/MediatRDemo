@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MediatRDemo.Application.Extensions
+namespace MediatRDemo.Application.Common.Extensions
 {
 	public static class DateTimeExtensions
 	{

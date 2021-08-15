@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using MediatRDemo.Application.Common.Mappings;
 using MediatRDemo.Application.Interfaces;
 using MediatRDemo.Domain.Entities;
 using System.Threading;
@@ -13,6 +14,7 @@ namespace MediatRDemo.Application.Base.Commands
 	}
 
 	public class CreateBaseCommandHandler<TEntityDto, TEntity, TKey>
+		where TEntityDto : IMapFrom<TEntity>
 		where TEntity : BaseEntity<TKey>
 	{
 		private readonly IUnitOfWork unitOfWork;
