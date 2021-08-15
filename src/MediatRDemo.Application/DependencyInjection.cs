@@ -11,7 +11,9 @@ namespace MediatRDemo.Application
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            return services;
+			services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+			return services;
         }
     }
 }
