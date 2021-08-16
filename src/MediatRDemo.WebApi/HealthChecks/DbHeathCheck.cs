@@ -29,10 +29,11 @@ namespace MediatRDemo.WebApi.HealthChecks
 					using (var command = connection.CreateCommand())
 					{
 						command.CommandText = _testSqlQuery;
-						await command.ExecuteScalarAsync(cancellationToken);
-					}
 
-					return HealthCheckResult.Healthy("Blah Blah");
+						var result = await command.ExecuteScalarAsync(cancellationToken);
+
+						return HealthCheckResult.Healthy(result.ToString());
+					}
 				}
 				catch (Exception ex)
 				{
