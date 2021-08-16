@@ -16,7 +16,7 @@ namespace MediatRDemo.Infrastructure.Persistence.Migrations
 CREATE OR ALTER PROCEDURE HealthCheck 
 AS
 BEGIN
-	select GETDATE() 'CurrentDateTime'
+	SELECT GETDATE() 'CurrentDateTime';RETURN 1;
 END
 GO
 ";
