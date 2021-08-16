@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MediatRDemo.WebApi.HealthChecks
 {
-	public class DbHeathCheck : IHealthCheck
+	public class DbHealthCheck : IHealthCheck
 	{
 		private readonly string _connectionString;
 		private readonly string _testSqlQuery;
 
-		public DbHeathCheck(IOptions<ConnectionStringSettings> connectionStrings)
+		public DbHealthCheck(IOptions<ConnectionStringSettings> connectionStrings)
 		{
 			_connectionString = connectionStrings.Value.Database;
 			_testSqlQuery = "EXEC [dbo].[HealthCheck]";
