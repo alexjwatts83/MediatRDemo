@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatRDemo.Infrastructure.Persistence.Configurations;
+﻿using MediatRDemo.Infrastructure.Persistence.Configurations;
 using MediatRDemo.Infrastructure.Persistence.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace MediatRDemo.WebApi.DependencyInjection
 {
-    internal static class RunDbMigrations
+	internal static class RunDbMigrations
     {
         internal static void Run(IHost host)
         {

@@ -6,8 +6,6 @@ using Microsoft.Extensions.Hosting;
 using MediatRDemo.Application;
 using MediatRDemo.WebApi.StartupExtensions;
 using MediatRDemo.Infrastructure.Persistence.DependencyInjection;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using HealthChecks.UI.Client;
 
 namespace MediatRDemo.WebApi
 {
