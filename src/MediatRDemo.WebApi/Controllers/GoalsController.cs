@@ -1,16 +1,15 @@
 ﻿using MediatR;
 using MediatRDemo.Application.Goals.Commands;
 using MediatRDemo.Application.Goals.Queries;
-using MediatRDemo.Application.GoalTasks.Queries;
 using MediatRDemo.Domain.Entities;
 using System;
 
 namespace MediatRDemo.WebApi.Controllers
 {
-	public class GoalController 
+	public class GoalsController
 		: BaseApiController<Goal, GoalDto, Guid, GetAllGoalsQuery, GetByIdGoalQuery, CreateGoalCommand, UpdateGoalCommand, DeleteGoalCommand>
 	{
-		public GoalController(IMediator mediator) : base(mediator)
+		public GoalsController(IMediator mediator) : base(mediator)
 		{
 		}
 	}
