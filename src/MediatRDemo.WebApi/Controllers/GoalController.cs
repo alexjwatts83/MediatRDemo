@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using MediatRDemo.Application.Goals.Commands;
 using MediatRDemo.Application.Goals.Queries;
+using MediatRDemo.Application.GoalTasks.Queries;
 using MediatRDemo.Domain.Entities;
 using System;
 

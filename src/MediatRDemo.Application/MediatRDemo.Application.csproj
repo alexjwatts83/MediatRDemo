@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="GoalTasks\Commands\" />
     <Folder Include="TwelveWeekYears\Commands\" />
   </ItemGroup>
 
