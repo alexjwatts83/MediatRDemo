@@ -46,10 +46,7 @@ namespace MediatRDemo.WebApi
 			app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-				endpoints.MapHealthChecks("/health", new HealthCheckOptions()
-				{
-					ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-				});
+				endpoints.MapCustomHealthChecks();
 				endpoints.MapControllers();
             });
         }

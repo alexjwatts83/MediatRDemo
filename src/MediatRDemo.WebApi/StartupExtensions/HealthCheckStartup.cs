@@ -1,4 +1,8 @@
-﻿using MediatRDemo.WebApi.HealthChecks;
+﻿using HealthChecks.UI.Client;
+using MediatRDemo.WebApi.HealthChecks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +16,14 @@ namespace MediatRDemo.WebApi.StartupExtensions
 			services.AddSingleton<DbHealthCheck>();
 
 			return services;
+		}
+
+		public static void MapCustomHealthChecks(this IEndpointRouteBuilder endpoints)
+		{
+			endpoints.MapHealthChecks("/health", new HealthCheckOptions()
+			{
+				ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+			});
 		}
 	}
 }
