@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MediatRDemo.Application.Common.Mappings;
 
-namespace MediatRDemo.Application.Goals.Commands
+namespace MediatRDemo.Application.GoalTasks.Commands
 {
 	public class GoalTaskDto : IMapFrom<GoalTask>
 	{

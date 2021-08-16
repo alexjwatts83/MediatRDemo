@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using MediatRDemo.Application.Base.Commands;
 using MediatRDemo.Application.Interfaces;
 using MediatRDemo.Domain.Entities;
