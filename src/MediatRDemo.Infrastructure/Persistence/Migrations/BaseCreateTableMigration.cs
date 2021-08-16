@@ -2,7 +2,6 @@
 
 namespace MediatRDemo.Infrastructure.Persistence.Migrations
 {
-
 	public abstract class BaseCreateTableMigration : Migration, IProductionMigration
 	{
         protected readonly string _tableName;
