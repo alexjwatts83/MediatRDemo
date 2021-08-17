@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
+using FluentValidation;
 using MediatR;
+using MediatRDemo.Application.Common.Behaviours;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +14,10 @@ namespace MediatRDemo.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
 			services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+			services.AddTransient(typeof(IPipelineBehavior<,>),	typeof(ValidationBehavior<,>));
+
+			services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 			return services;
         }
