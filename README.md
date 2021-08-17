@@ -1,4 +1,5 @@
 # MediatRDemo
+A small demo using MediatR, Dapper and FluentMigrator.
 
 ## Tech Stack
 - .NET CORE 5 for libraries and API
