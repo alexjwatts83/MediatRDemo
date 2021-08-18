@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MediatRDemo.Domain.Entities
 {
@@ -6,5 +7,6 @@ namespace MediatRDemo.Domain.Entities
 	{
 		public DateTime Start { get; set; }
 		public DateTime End { get; set; }
+		public IEnumerable<Exercise> Excercises { get; set; }
 	}
 }
