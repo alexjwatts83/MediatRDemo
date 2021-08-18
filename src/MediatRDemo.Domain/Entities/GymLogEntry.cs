@@ -4,6 +4,7 @@ namespace MediatRDemo.Domain.Entities
 {
 	public class GymLogEntry : BaseLogEntry
 	{
-		public TimeSpan Duration { get; set; }
+		public DateTime Start { get; set; }
+		public DateTime End { get; set; }
 	}
 }
