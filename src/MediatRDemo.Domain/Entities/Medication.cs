@@ -1,7 +1,8 @@
 ﻿namespace MediatRDemo.Domain.Entities
 {
-	public abstract class BaseLogEntryWithNameAndDescription : BaseLogEntry
+	public class Medication : BaseEntity<int>
 	{
+		public MedicationAmountType Type { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 	}
