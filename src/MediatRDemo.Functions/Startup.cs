@@ -32,7 +32,7 @@ namespace MediatRDemo.Functions
 
 			builder.ConfigurationBuilder
 				.SetBasePath(context.ApplicationRootPath)
-				.AddJsonFile("local.settings.json", optional: true, reloadOnChange: false)
+				.AddJsonFile("appssettings.json", optional: true, reloadOnChange: false)
 				.AddUserSecrets(Assembly.GetExecutingAssembly(), true)
 				.AddEnvironmentVariables();
 		}
