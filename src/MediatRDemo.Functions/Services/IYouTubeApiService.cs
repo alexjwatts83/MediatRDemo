@@ -4,6 +4,6 @@ namespace MediatRDemo.Functions.Services
 {
 	public interface IYouTubeApiService
 	{
-		Task Run();
+		Task Search(string q);
 	}
 }

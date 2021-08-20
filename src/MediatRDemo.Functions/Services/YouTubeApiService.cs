@@ -18,7 +18,7 @@ namespace MediatRDemo.Functions.Services
 			_channelId = config["YouTube:ChannelId"];
 		}
 
-		public async Task Run()
+		public async Task Search(string q)
 		{
 			var youtubeService = new YouTubeService(new BaseClientService.Initializer()
 			{
@@ -27,7 +27,7 @@ namespace MediatRDemo.Functions.Services
 			});
 
 			var searchListRequest = youtubeService.Search.List("snippet");
-			searchListRequest.Q = "Google"; // Replace with your search term.
+			searchListRequest.Q = q;
 			searchListRequest.MaxResults = 50;
 
 			// Call the search.list method to retrieve results matching the specified query term.
