@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using MediatRDemo.Functions.Services;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -18,7 +19,8 @@ namespace MediatRDemo.Functions
 
 			builder
 				.Services
-				.Replace(ServiceDescriptor.Singleton(typeof(IConfiguration), configuration));
+				.Replace(ServiceDescriptor.Singleton(typeof(IConfiguration), configuration))
+				.AddTransient<IYouTubeApiService, YouTubeApiService>();
 		}
 	}
 }
