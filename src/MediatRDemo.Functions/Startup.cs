@@ -12,15 +12,29 @@ namespace MediatRDemo.Functions
 	{
 		public override void Configure(IFunctionsHostBuilder builder)
 		{
-			var configuration = new ConfigurationBuilder()
-				.AddUserSecrets(Assembly.GetExecutingAssembly(), false)
-				.AddEnvironmentVariables()
-				.Build();
+			//var configuration = new ConfigurationBuilder()
+			//	.AddUserSecrets(Assembly.GetExecutingAssembly(), false)
+			//	.AddEnvironmentVariables()
+			//	.Build();
 
-			builder
-				.Services
-				.Replace(ServiceDescriptor.Singleton(typeof(IConfiguration), configuration))
-				.AddTransient<IYouTubeApiService, YouTubeApiService>();
+			//builder
+			//	.Services
+			//	.Replace(ServiceDescriptor.Singleton(typeof(IConfiguration), configuration))
+			//	.AddTransient<IYouTubeApiService, YouTubeApiService>();
+			var services = builder.Services;
+			services.AddScoped<IYouTubeApiService, YouTubeApiService>();
+		}
+
+		public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
+		{
+			var config = builder.ConfigurationBuilder.Build();
+			var context = builder.GetContext();
+
+			builder.ConfigurationBuilder
+				.SetBasePath(context.ApplicationRootPath)
+				.AddJsonFile("local.settings.json", optional: true, reloadOnChange: false)
+				.AddUserSecrets(Assembly.GetExecutingAssembly(), true)
+				.AddEnvironmentVariables();
 		}
 	}
 }
