@@ -7,5 +7,6 @@ namespace MediatRDemo.Functions.Services
 		Task Search(string q);
 		Task List(string channelId);
 		Task Get(string videoId);
+		Task Update(string videoId);
 	}
 }

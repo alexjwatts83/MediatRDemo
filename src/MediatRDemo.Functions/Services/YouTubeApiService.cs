@@ -27,7 +27,7 @@ namespace MediatRDemo.Functions.Services
 			var request = _youtubeService.Videos.List("snippet");
 			request.Id = videoId;
 			var results = await request.ExecuteAsync();
-			Console.WriteLine("========== Single Video ==========");
+			Console.WriteLine("========== Get Video ==========");
 			foreach (var item in results.Items)
 			{
 				Console.WriteLine($"{item.Snippet.Title}: {item.Id}");
@@ -36,7 +36,7 @@ namespace MediatRDemo.Functions.Services
 		public async Task List(string channelId)
 		{
 			var results = await GetVideosFromChannelAsync(channelId);
-			Console.WriteLine("========== Videos in Channel ==========");
+			Console.WriteLine("========== List Videos ==========");
 			foreach (var item in results)
 			{
 				Console.WriteLine($"{item.Snippet.Title}: {item.Id.VideoId}");
@@ -110,6 +110,27 @@ namespace MediatRDemo.Functions.Services
 			Console.WriteLine(string.Format("Videos:\n{0}\n", string.Join("\n", videos)));
 			Console.WriteLine(string.Format("Channels:\n{0}\n", string.Join("\n", channels)));
 			Console.WriteLine(string.Format("Playlists:\n{0}\n", string.Join("\n", playlists)));
+		}
+
+		public async Task Update(string videoId)
+		{
+			var request = _youtubeService.Videos.List("snippet");
+			request.Id = videoId;
+			request.MaxResults = 1;
+
+			var results = await request.ExecuteAsync();
+			Console.WriteLine("========== Update Video ==========");
+			var video = results.Items[0];
+			var title = video.Snippet.Title + " 1";
+			video.Snippet.Title = title;
+			//video.Snippet.Description = description;
+			video.Snippet.Tags = new List<string>() { "test" };
+
+			// and tell the changes we want to youtube
+			var my_update_request = _youtubeService.Videos.Update(video, "snippet, status");
+			await my_update_request.ExecuteAsync();
+
+			await Get(videoId);
 		}
 	}
 }

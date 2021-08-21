@@ -39,6 +39,7 @@ namespace MediatRDemo.Functions
 
 			await _youTubeApiService.List(channelId);
 			await _youTubeApiService.Get(videoId);
+			await _youTubeApiService.Update(videoId);
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
