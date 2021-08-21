@@ -33,7 +33,11 @@ namespace MediatRDemo.Functions
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
 
-			await _youTubeApiService.Search(name);
+			//await _youTubeApiService.Search(name);
+
+			//await _youTubeApiService.List(name);
+
+			await _youTubeApiService.Get(name);
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
