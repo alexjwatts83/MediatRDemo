@@ -1,9 +1,13 @@
-﻿using Google.Apis.Services;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MediatRDemo.Functions.Services
@@ -12,6 +16,11 @@ namespace MediatRDemo.Functions.Services
 	{
 		private readonly string _apiKey;
 		private readonly YouTubeService _youtubeService;
+		private YouTubeService _youtubeServiceAuthed;
+
+		private readonly string _clientId;
+		private readonly string _clientSecret;
+		private readonly string _username;
 
 		public YouTubeApiService(IConfiguration config)
 		{
@@ -21,6 +30,9 @@ namespace MediatRDemo.Functions.Services
 				ApiKey = _apiKey,
 				ApplicationName = GetType().ToString()
 			});
+			_clientId = config["YouTube:ClientId"];
+			_clientSecret = config["YouTube:ClientSecret"];
+			_username = config["YouTube:Username"];
 		}
 		public async Task Get(string videoId)
 		{
@@ -127,10 +139,57 @@ namespace MediatRDemo.Functions.Services
 			video.Snippet.Tags = new List<string>() { "test" };
 
 			// and tell the changes we want to youtube
-			var my_update_request = _youtubeService.Videos.Update(video, "snippet, status");
+			var youtubeAuthed = await GetYouTubeAuthedService();
+			var my_update_request = youtubeAuthed.Videos.Update(video, "snippet, status");
 			await my_update_request.ExecuteAsync();
 
 			await Get(videoId);
+		}
+
+		private async Task<YouTubeService> GetYouTubeAuthedService()
+		{
+			if (_youtubeServiceAuthed == null)
+			{
+				var client_secret_path = "client_secrets.json"; // here you put the path to your .json client secret file, generated in your Google Developer Account
+				//String username = ""; // youtube account login username
+
+
+				UserCredential credential;
+				using (var stream = new FileStream(client_secret_path, FileMode.Open, FileAccess.Read))
+				{
+					credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+						GoogleClientSecrets.Load(stream).Secrets,
+						new[] { YouTubeService.Scope.Youtube },
+						_username,
+						CancellationToken.None,
+						new FileDataStore(this.GetType().ToString())
+					).ConfigureAwait(false);
+				}
+
+				//var credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+				//	new ClientSecrets
+				//	{
+				//		ClientId = _clientId,
+				//		ClientSecret = _clientSecret
+				//	},
+				//	new[]
+				//	{
+				//		YouTubeService.Scope.Youtube,
+				//		YouTubeService.Scope.YoutubeUpload
+				//	},
+				//	_username,
+				//	CancellationToken.None,
+				//	new FileDataStore(this.GetType().ToString())
+				//).ConfigureAwait(false);
+
+				_youtubeServiceAuthed = new YouTubeService(new BaseClientService.Initializer()
+				{
+					HttpClientInitializer = credential,
+					ApplicationName = this.GetType().ToString()
+				});
+			}
+
+			return _youtubeServiceAuthed;
 		}
 	}
 }
