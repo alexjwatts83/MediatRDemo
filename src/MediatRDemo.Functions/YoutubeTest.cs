@@ -28,16 +28,17 @@ namespace MediatRDemo.Functions
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
+			string videoId = req.Query["videoId"];
+			string channelId = req.Query["channelId"];
 
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+			string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
 
 			//await _youTubeApiService.Search(name);
 
-			//await _youTubeApiService.List(name);
-
-			await _youTubeApiService.Get(name);
+			await _youTubeApiService.List(channelId);
+			await _youTubeApiService.Get(videoId);
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."

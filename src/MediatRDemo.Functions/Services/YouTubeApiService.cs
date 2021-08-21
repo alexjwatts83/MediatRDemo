@@ -11,34 +11,33 @@ namespace MediatRDemo.Functions.Services
 	public class YouTubeApiService : IYouTubeApiService
 	{
 		private readonly string _apiKey;
-		private readonly string _channelId;
 		private readonly YouTubeService _youtubeService;
 
 		public YouTubeApiService(IConfiguration config)
 		{
 			_apiKey = config["YouTube:Key"];
-			_channelId = config["YouTube:ChannelId"];
-			_channelId = "UCmwBK--M9B7p4nATCRWADPw";
 			_youtubeService = new YouTubeService(new BaseClientService.Initializer()
 			{
 				ApiKey = _apiKey,
 				ApplicationName = GetType().ToString()
 			});
 		}
-
-		public async Task Get(string q)
+		public async Task Get(string videoId)
 		{
 			var request = _youtubeService.Videos.List("snippet");
-			request.Id = "qbaj-JVG1yM";
-
-			var response = await request.ExecuteAsync();
-
+			request.Id = videoId;
+			var results = await request.ExecuteAsync();
+			Console.WriteLine("========== Single Video ==========");
+			foreach (var item in results.Items)
+			{
+				Console.WriteLine($"{item.Snippet.Title}: {item.Id}");
+			}
 		}
-		public async Task List(string q)
+		public async Task List(string channelId)
 		{
-			var results = await GetVideosFromChannelAsync(_channelId);
-
-			foreach(var item in results)
+			var results = await GetVideosFromChannelAsync(channelId);
+			Console.WriteLine("========== Videos in Channel ==========");
+			foreach (var item in results)
 			{
 				Console.WriteLine($"{item.Snippet.Title}: {item.Id.VideoId}");
 			}
@@ -69,7 +68,6 @@ namespace MediatRDemo.Functions.Services
 
 			return res;
 		}
-
 		public async Task Search(string q)
 		{
 			var youtubeService = new YouTubeService(new BaseClientService.Initializer()
