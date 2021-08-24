@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MediatRDemo.Functions.Services
@@ -45,7 +46,7 @@ namespace MediatRDemo.Functions.Services
 			var req = new HttpRequestMessage(HttpMethod.Post, url) { Content = new FormUrlEncodedContent(dict) };
 			var response = await Client.SendAsync(req);
 			var responseResult = await response.Content.ReadAsStringAsync();
-			var googleToken = System.Text.Json.JsonSerializer.Deserialize<GoogleToken>(responseResult);
+			var googleToken = JsonSerializer.Deserialize<GoogleToken>(responseResult);
 
 			_bearerToken = googleToken.access_token;
 

@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace MediatRDemo.Functions.Services
 {
@@ -10,5 +6,17 @@ namespace MediatRDemo.Functions.Services
 	{
 		Task<string> GetLastToken();
 		Task<bool> SaveToken(string token);
+	}
+	public class TokenService : ITokenService
+	{
+		public Task<string> GetLastToken()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public Task<bool> SaveToken(string token)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

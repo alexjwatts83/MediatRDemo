@@ -20,6 +20,7 @@ namespace MediatRDemo.Functions
 			builder
 				.Services
 				.Replace(ServiceDescriptor.Singleton(typeof(IConfiguration), configuration))
+				.AddTransient<ITokenService, TokenService>()
 				.AddTransient<IYouTubeSdkService, YouTubeSdkService>();
 
 			builder.Services.AddHttpClient<YouTubeApiService>();
