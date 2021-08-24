@@ -2,7 +2,7 @@
 
 namespace MediatRDemo.Functions.Services
 {
-	public interface IYouTubeApiService
+	public interface IYouTubeSdkService
 	{
 		Task Search(string q);
 		Task List(string channelId);

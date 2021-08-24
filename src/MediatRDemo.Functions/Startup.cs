@@ -12,17 +12,15 @@ namespace MediatRDemo.Functions
 	{
 		public override void Configure(IFunctionsHostBuilder builder)
 		{
-			//var configuration = new ConfigurationBuilder()
-			//	.AddUserSecrets(Assembly.GetExecutingAssembly(), false)
-			//	.AddEnvironmentVariables()
-			//	.Build();
+			var configuration = new ConfigurationBuilder()
+				.AddUserSecrets(Assembly.GetExecutingAssembly(), false)
+				.AddEnvironmentVariables()
+				.Build();
 
-			//builder
-			//	.Services
-			//	.Replace(ServiceDescriptor.Singleton(typeof(IConfiguration), configuration))
-			//	.AddTransient<IYouTubeApiService, YouTubeApiService>();
-			var services = builder.Services;
-			services.AddScoped<IYouTubeApiService, YouTubeApiService>();
+			builder
+				.Services
+				.Replace(ServiceDescriptor.Singleton(typeof(IConfiguration), configuration))
+				.AddTransient<IYouTubeSdkService, YouTubeSdkService>();
 		}
 
 		public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
@@ -35,6 +33,8 @@ namespace MediatRDemo.Functions
 				.AddJsonFile("appssettings.json", optional: true, reloadOnChange: false)
 				.AddUserSecrets(Assembly.GetExecutingAssembly(), true)
 				.AddEnvironmentVariables();
+
+			builder.ConfigurationBuilder.Add
 		}
 	}
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MediatRDemo.Functions.Services
 {
-	public class YouTubeApiService : IYouTubeApiService
+	public class YouTubeSdkService : IYouTubeSdkService
 	{
 		private readonly string _apiKey;
 		private readonly YouTubeService _youtubeService;
@@ -22,7 +22,7 @@ namespace MediatRDemo.Functions.Services
 		private readonly string _clientSecret;
 		private readonly string _username;
 
-		public YouTubeApiService(IConfiguration config)
+		public YouTubeSdkService(IConfiguration config)
 		{
 			_apiKey = config["YouTube:Key"];
 			_youtubeService = new YouTubeService(new BaseClientService.Initializer()
@@ -139,9 +139,12 @@ namespace MediatRDemo.Functions.Services
 			video.Snippet.Tags = new List<string>() { "test" };
 
 			// and tell the changes we want to youtube
-			var youtubeAuthed = await GetYouTubeAuthedService();
-			var my_update_request = youtubeAuthed.Videos.Update(video, "snippet, status");
-			await my_update_request.ExecuteAsync();
+			//var youtubeAuthed = await GetYouTubeAuthedService();
+			//var my_update_request = youtubeAuthed.Videos.Update(video, "snippet, status");
+			//await my_update_request.ExecuteAsync();
+
+			var token = "ya29.a0ARrdaM9PJzZnLtyPm1Lka4ij51oYtEn8qcySTYntZzIFuRlt-vde1chu-OA0lF2kM9zUBVOipBuCDsaZsCeqSmqESCtu1UhU__UBJF4eDhaqCy1C--Z-504dkrqbfcR_4nneqJh-ZL6bmbHsCV9-vBHK_MI9";
+			//Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
 			await Get(videoId);
 		}

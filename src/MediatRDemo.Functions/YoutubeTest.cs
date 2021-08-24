@@ -13,11 +13,13 @@ namespace MediatRDemo.Functions
 {
     public class YoutubeTest
     {
-		private readonly IYouTubeApiService _youTubeApiService;
+		private readonly IYouTubeSdkService _youTubeApiService;
+		private readonly YouTubeService3 _youTubeService3;
 
-		public YoutubeTest(IYouTubeApiService youTubeApiService)
+		public YoutubeTest(IYouTubeSdkService youTubeApiService, YouTubeService3 youTubeService3)
 		{
 			_youTubeApiService = youTubeApiService;
+			_youTubeService3 = youTubeService3;
 		}
 
         [FunctionName("YoutubeTest")]
@@ -40,8 +42,9 @@ namespace MediatRDemo.Functions
 			await _youTubeApiService.List(channelId);
 			await _youTubeApiService.Get(videoId);
 			await _youTubeApiService.Update(videoId);
+			await _youTubeService3.UpdateVideo(videoId);
 
-            string responseMessage = string.IsNullOrEmpty(name)
+			string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
                 : $"Hello, {name}. This HTTP triggered function executed successfully.";
 
