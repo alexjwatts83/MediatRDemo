@@ -21,6 +21,8 @@ namespace MediatRDemo.Functions
 				.Services
 				.Replace(ServiceDescriptor.Singleton(typeof(IConfiguration), configuration))
 				.AddTransient<IYouTubeSdkService, YouTubeSdkService>();
+
+			builder.Services.AddHttpClient<YouTubeApiService>();
 		}
 
 		public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)

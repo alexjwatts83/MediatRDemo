@@ -4,11 +4,11 @@ using System.Net.Http;
 
 namespace MediatRDemo.Functions.Services
 {
-	public class YouTubeService3
+	public class YouTubeApiService
 	{
 		private readonly string _apiKey;
 
-		public YouTubeService3(HttpClient client, IConfiguration config)
+		public YouTubeApiService(HttpClient client, IConfiguration config)
 		{
 			_apiKey = config["YouTube:Key"];
 

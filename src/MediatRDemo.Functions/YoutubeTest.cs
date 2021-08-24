@@ -14,9 +14,9 @@ namespace MediatRDemo.Functions
     public class YoutubeTest
     {
 		private readonly IYouTubeSdkService _youTubeApiService;
-		private readonly YouTubeService3 _youTubeService3;
+		private readonly YouTubeApiService _youTubeService3;
 
-		public YoutubeTest(IYouTubeSdkService youTubeApiService, YouTubeService3 youTubeService3)
+		public YoutubeTest(IYouTubeSdkService youTubeApiService, YouTubeApiService youTubeService3)
 		{
 			_youTubeApiService = youTubeApiService;
 			_youTubeService3 = youTubeService3;
