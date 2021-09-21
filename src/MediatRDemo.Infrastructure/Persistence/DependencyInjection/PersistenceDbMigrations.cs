@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Initialization;
@@ -12,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MediatRDemo.Infrastructure.Persistence.DependencyInjection
 {
-    public static class PersistenceDbMigrations
+	public static class PersistenceDbMigrations
     {
         public static void EnsureDatabase(string connectionString, string name)
         {
